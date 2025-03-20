@@ -215,7 +215,7 @@ class XTTSv2Engine(BaseAsyncTTSEngine):
             max_model_len=self.gpt_config.max_text_tokens +
                           self.gpt_config.max_audio_tokens +
                           32 + 5 + 3, # this is from the xttsv2 code, 32 is the conditioning sql
-            gpu_memory_utilization=mem_utils,
+            gpu_memory_utilization=0.4,
             trust_remote_code=True,
             enforce_eager=True,
             limit_mm_per_prompt={"audio": 1}, # even if more audio are present, they'll be condendesed into one

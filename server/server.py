@@ -25,21 +25,22 @@ class OpenAiRequest(BaseModel):
     # Auralis параметры
     stream: bool = False
     sample_rate: int = 8000
-    voice_b64: str | None = None,
-    enhance_speech: bool | None = None
+    # voice_b64: str | None = None,
+    # enhance_speech: bool | None = None
 
 
 @app.post("/v1/audio/speech")
 async def generate_speech(request: OpenAiRequest):
+    # logging.info(request)
     speaker_file = speaker
-    if request.voice_b64 is not None:
-        validate_request(request)
-        speaker_file = base64.b64decode(request.voice_b64)
+    # if request.voice_b64 is not None:
+    #     validate_request(request)
+    #     speaker_file = base64.b64decode(request.voice_b64)
     tts_request = TTSRequest(
         text=request.input,
         stream=request.stream,
         speaker_files=[speaker_file],
-        enhance_speech=request.enhance_speech
+        # enhance_speech=request.enhance_speech
     )
     try:
         if request.stream:

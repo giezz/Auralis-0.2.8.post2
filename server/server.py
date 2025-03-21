@@ -26,7 +26,7 @@ class OpenAiRequest(BaseModel):
     stream: bool = False
     sample_rate: int = 8000
     voice_b64: str = None,
-    enhance_speech: bool
+    enhance_speech: bool = False
 
 
 @app.post("/v1/audio/speech")

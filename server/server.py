@@ -72,7 +72,7 @@ def validate_request(request: OpenAiRequest):
 def main():
     if tts is None:
         raise ValueError("TTS engine not initialized")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, workers=int(os.environ.get("AURALIS_WORKERS", 1)), host="0.0.0.0", port=8000)
 
 
 if __name__ == "__main__":

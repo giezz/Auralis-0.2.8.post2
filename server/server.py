@@ -69,11 +69,11 @@ def validate_request(request: OpenAiRequest):
         raise ValueError(f"Ошибка в кодировке base64")
 
 
-def main():
-    if tts is None:
-        raise ValueError("TTS engine not initialized")
-    uvicorn.run(app, workers=int(os.environ.get("AURALIS_WORKERS", 1)), host="0.0.0.0", port=8000)
-
-
-if __name__ == "__main__":
-    main()
+# def main():
+#     if tts is None:
+#         raise ValueError("TTS engine not initialized")
+#     uvicorn.run(app, workers=int(os.environ.get("AURALIS_WORKERS", 1)), host="0.0.0.0", port=8000)
+#
+#
+# if __name__ == "__main__":
+#     main()

@@ -25,8 +25,8 @@ class OpenAiRequest(BaseModel):
     # Auralis параметры
     stream: bool = False
     sample_rate: int = 8000
-    voice_b64: str = None,
-    enhance_speech: bool = False
+    voice_b64: str | None = None,
+    enhance_speech: bool | None = None
 
 
 @app.post("/v1/audio/speech")

@@ -1,5 +1,6 @@
 import base64
 import logging
+import os
 
 import uvicorn
 from auralis import TTS, TTSRequest
@@ -9,7 +10,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 tts = (TTS(
-    scheduler_max_concurrency=8,
+    scheduler_max_concurrency=int(os.environ.get("AURALIS_MAX_CONCURRENCY", 8)),
     vllm_logging_level=logging.WARN)
 .from_pretrained(
     "AstraMindAI/xttsv2",

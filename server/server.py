@@ -49,12 +49,13 @@ async def generate_speech(request: OpenAiRequest):
 
             async def audio_stream():
                 async for chunk in stream:
+                    chunk = chunk.resample(request.sample_rate)
                     yield chunk.to_bytes()
 
             return StreamingResponse(audio_stream(), media_type="audio/wav")
         else:
             output = await tts.generate_speech_async(tts_request)
-            output.resample(request.sample_rate)
+            output = output.resample(request.sample_rate)
             return Response(content=output.to_bytes(), media_type=f"audio/wav")
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": f"Error generating audio: {str(e)}"})
